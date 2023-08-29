@@ -46,15 +46,10 @@ import hashlib
 # Note that you’ll use this new `Record` class as the data type of your `record` attribute in the next section.
 
 
-# @dataclass
+# @TODO
 # Create a Record Data Class that consists of the `sender`, `receiver`, and
 # `amount` attributes
-#
-@dataclass
-class Record:
-    sender: str
-    receiver: str
-    amount: float
+# YOUR CODE HERE
 
 
 ################################################################################
@@ -70,9 +65,11 @@ class Record:
 
 @dataclass
 class Block:
+
     # @TODO
     # Rename the `data` attribute to `record`, and set the data type to `Record`
-    record: Record
+    data: Any
+
     creator_id: int
     prev_hash: str = "0"
     timestamp: str = datetime.datetime.utcnow().strftime("%H:%M:%S")
@@ -105,11 +102,13 @@ class PyChain:
     difficulty: int = 4
 
     def proof_of_work(self, block):
+
         calculated_hash = block.hash_block()
 
         num_of_zeros = "0" * self.difficulty
 
         while not calculated_hash.startswith(num_of_zeros):
+
             block.nonce += 1
 
             calculated_hash = block.hash_block()
@@ -133,7 +132,6 @@ class PyChain:
 
         print("Blockchain is Valid")
         return True
-
 
 ################################################################################
 # Streamlit Code
@@ -168,19 +166,19 @@ pychain = setup()
 
 # @TODO:
 # Delete the `input_data` variable from the Streamlit interface.
-# input_data = st.text_input("Block Data")
+input_data = st.text_input("Block Data")
 
 # @TODO:
 # Add an input area where you can get a value for `sender` from the user.
-sender = st.text_input("Enter Sender Name")
+# YOUR CODE HERE
 
 # @TODO:
 # Add an input area where you can get a value for `receiver` from the user.
-receiver = st.text_input("Enter Receiver Name")
+# YOUR CODE HERE
 
 # @TODO:
 # Add an input area where you can get a value for `amount` from the user.
-amount = st.text_input("How Much are you sending?")
+# YOUR CODE HERE
 
 if st.button("Add Block"):
     prev_block = pychain.chain[-1]
@@ -191,9 +189,9 @@ if st.button("Add Block"):
     # which is set equal to a `Record` that contains the `sender`, `receiver`,
     # and `amount` values
     new_block = Block(
-        record=Record(sender, receiver, amount),
+        data=input_data,
         creator_id=42,
-        prev_hash=prev_block_hash,
+        prev_hash=prev_block_hash
     )
 
     pychain.add_block(new_block)

@@ -95,8 +95,6 @@ Test your complete `PyChain` ledger and user interface by running your Streamlit
 
 ![hw18](https://github.com/branztg/PyChain/assets/100908888/f3692acd-89ee-4700-b278-ed06d88bf262)
 
- 
-* Submit the link to your GitHub project to Bootcamp Spot.
 
 ---
 
